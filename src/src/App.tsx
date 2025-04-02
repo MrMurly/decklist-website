@@ -1,20 +1,16 @@
-import './App.scss'
-import { useDecklistStore } from './store/deckliststore';
+import './App.scss';
 import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
-import { EventView } from './Components/Events/EventView.tsx'
+import { EventView } from './Components/Events/EventView.tsx';
 import { LoggedIn } from './Components/Login/LoggedIn.tsx';
 import { LandingPage } from './Components/LandingPage/LandingPage.tsx';
 import {
   QueryClient,
   QueryClientProvider
-} from 'react-query'
+} from 'react-query';
 
-import Container from 'react-bootstrap/Container';
-import Nav from 'react-bootstrap/Nav';
-import Navbar from 'react-bootstrap/Navbar';
 import { AuthProvider } from './Components/Login/AuthContext.tsx';
 import { CreateEvent } from './Components/Events/CreateEvent.tsx';
 import { DeckView } from './Components/Events/DeckView.tsx';
@@ -23,7 +19,6 @@ import { DecklistHelp } from './Components/Help/DecklistHelp';
 import { PrivacyHelp } from './Components/Help/PrivacyPolicy';
 import { TermsAndServicesHelp } from './Components/Help/TermsAndServices';
 import { MutliEventView } from './Components/Events/MultiEventView.tsx';
-import { useAuth } from './Components/Login/useAuth.ts';
 import { ContributeHelp } from './Components/Help/Contribute.tsx';
 import { About } from './Components/Help/About.tsx';
 import { Header } from './Components/Header.tsx';
