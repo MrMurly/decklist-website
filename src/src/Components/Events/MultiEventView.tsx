@@ -1,13 +1,16 @@
 import { useQuery } from "react-query";
 import { Link, useParams, useSearchParams } from "react-router-dom";
 import {
+<<<<<<< HEAD
   EventDetails,
+=======
+>>>>>>> a66804e69ece033297b612d5f47e20229bccd83d
   getMultipleEventsRequest,
 } from "../../model/api/apimodel";
 import { Card, Spinner, Table } from "react-bootstrap";
 
 export function MutliEventView() {
-  const [searchParams, _] = useSearchParams();
+  const [searchParams] = useSearchParams();
   const { hub_name } = useParams();
 
   const eventIds = searchParams.getAll("id");
@@ -43,12 +46,16 @@ export function MutliEventView() {
                 </tr>
               </thead>
               <tbody>
+<<<<<<< HEAD
                 {data
                   ?.sort(
                     (lhs: EventDetails, rhs: EventDetails) =>
                       lhs.event_date.getTime() - rhs.event_date.getTime()
                   )
                   .map((event) => (
+=======
+                {data?.sort((a, b) => new Date(a.event_date).getTime() - new Date(b.event_date).getTime()).map((event) => (
+>>>>>>> a66804e69ece033297b612d5f47e20229bccd83d
                     <tr key={event.event_id}>
                       <td>
                         <div className="d-flex justify-content-between align-items-center">
@@ -67,7 +74,11 @@ export function MutliEventView() {
                       <td>{new Date(event.event_date).toLocaleDateString()}</td>
                     </tr>
                   ))}
+<<<<<<< HEAD
                 {data?.length === 0 && (
+=======
+                {(!data || data?.length === 0) && (
+>>>>>>> a66804e69ece033297b612d5f47e20229bccd83d
                   <tr>
                     <td colSpan={3} className="text-center py-4">
                       No events found

@@ -8,7 +8,7 @@ import { useQuery } from 'react-query';
 
 
 export function CreateEvent() : ReactElement {
-    const { register, handleSubmit, setError, clearErrors, formState: { errors } } = useForm<Inputs>();
+    const { register, handleSubmit, setError, clearErrors, formState: { errors, isSubmitting } } = useForm<Inputs>();
     const navigate = useNavigate();
 
     const { data: formats, isLoading: formatsLoading, error: formatsError } = useQuery<FormatResponse>(
@@ -18,8 +18,8 @@ export function CreateEvent() : ReactElement {
     
     const onSubmit: SubmitHandler<Inputs> = async data => {
       try {
-        await createEventRequest({ event_name: data.event_name, format: data.format, event_date: data.event_date });
-        navigate('/');
+        const createdEvent = await createEventRequest({ event_name: data.event_name, format: data.format, event_date: data.event_date });
+        navigate('/e/' + createdEvent.event_id);
       }
       catch(e) {
         HandleValidation(setError, e);
@@ -88,7 +88,18 @@ export function CreateEvent() : ReactElement {
                                 </div>
                                 
                                 <div className="d-grid mt-4">
-                                    <button type='submit' className='btn btn-dark btn-lg'>Create Event</button>
+                                    <button 
+                                        type='submit' 
+                                        className='btn btn-dark btn-lg'
+                                        disabled={isSubmitting}
+                                    >
+                                        {isSubmitting ? (
+                                            <>
+                                                <span className="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+                                                Creating...
+                                            </>
+                                        ) : 'Create Event'}
+                                    </button>
                                 </div>
                             </form>
                         </div>
